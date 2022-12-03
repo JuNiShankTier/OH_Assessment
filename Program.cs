@@ -35,6 +35,10 @@ public class Program
             DbDataInitializer.Initialize(context);
         }
 
+        app.UseDefaultFiles();
+
+        app.UseStaticFiles();
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
