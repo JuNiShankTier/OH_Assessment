@@ -58,6 +58,33 @@ async function addOrderItem() {
   const addDeliveryDayDatebox = document.getElementById("add-delivery-day");
   const addRecipientTextbox = document.getElementById("add-recipient");
 
+  const constraints = {
+    amount: {
+      presence: true,
+      numericality: {
+        onlyInteger: true,
+        greaterThan: 0,
+      },
+    },
+    recipient: {
+      presence: true,
+      length: {
+        minimum: 3,
+      },
+    },
+  };
+
+  const validationErrors = validate(
+    { amount: addAmountTextbox.value, recipient: addRecipientTextbox.value },
+    constraints
+  );
+  if (validationErrors) {
+    for (const prop in validationErrors) {
+      alert(validationErrors[prop].map((error) => error));
+    }
+    return;
+  }
+
   const item = {
     articleId: addArticleCombobox.value,
     amount: parseFloat(addAmountTextbox.value) || 0,
@@ -89,6 +116,33 @@ async function addArticleItem() {
   const addPriceTextbox = document.getElementById("add-price");
   const addRarityCombobox = document.getElementById("add-rarity");
   const addDescriptionTextbox = document.getElementById("add-description");
+
+  const constraints = {
+    price: {
+      presence: true,
+      numericality: {
+        onlyInteger: false,
+        greaterThan: 0,
+      },
+    },
+    name: {
+      presence: true,
+      length: {
+        minimum: 3,
+      },
+    },
+  };
+
+  const validationErrors = validate(
+    { price: addPriceTextbox.value, name: addNameTextbox.value },
+    constraints
+  );
+  if (validationErrors) {
+    for (const prop in validationErrors) {
+      alert(validationErrors[prop].map((error) => error));
+    }
+    return;
+  }
 
   const item = {
     name: addNameTextbox.value,
@@ -161,12 +215,42 @@ function displayArticleEditForm(id) {
 
 async function updateOrderItem() {
   const itemId = document.getElementById("edit-order-id").value;
+  const amount = document.getElementById("edit-amount").value;
+  const recipient = document.getElementById("edit-recipient").value;
+
+  const constraints = {
+    amount: {
+      presence: true,
+      numericality: {
+        onlyInteger: true,
+        greaterThan: 0,
+      },
+    },
+    recipient: {
+      presence: true,
+      length: {
+        minimum: 3,
+      },
+    },
+  };
+
+  const validationErrors = validate(
+    { amount: amount, recipient: recipient },
+    constraints
+  );
+  if (validationErrors) {
+    for (const prop in validationErrors) {
+      alert(validationErrors[prop].map((error) => error));
+    }
+    return;
+  }
+
   const item = {
     orderId: parseInt(itemId, 10),
     articleId: document.getElementById("edit-article").value,
-    amount: document.getElementById("edit-amount").value,
+    amount: amount,
     deliveryDay: document.getElementById("edit-delivery-day").value,
-    recipient: document.getElementById("edit-recipient").value,
+    recipient: recipient,
   };
 
   await fetch(`${orderUri}/${itemId}`, {
@@ -187,10 +271,37 @@ async function updateOrderItem() {
 
 async function updateArticleItem() {
   const itemId = document.getElementById("edit-id").value;
+  const name = document.getElementById("edit-name").value;
+  const price = document.getElementById("edit-price").value;
+
+  const constraints = {
+    price: {
+      presence: true,
+      numericality: {
+        onlyInteger: false,
+        greaterThan: 0,
+      },
+    },
+    name: {
+      presence: true,
+      length: {
+        minimum: 3,
+      },
+    },
+  };
+
+  const validationErrors = validate({ price: price, name: name }, constraints);
+  if (validationErrors) {
+    for (const prop in validationErrors) {
+      alert(validationErrors[prop].map((error) => error));
+    }
+    return;
+  }
+
   const item = {
     articleId: parseInt(itemId, 10),
-    name: document.getElementById("edit-name").value,
-    price: document.getElementById("edit-price").value,
+    name: name,
+    price: price,
     rarity: document.getElementById("edit-rarity").value,
     description: document.getElementById("edit-description").value,
   };

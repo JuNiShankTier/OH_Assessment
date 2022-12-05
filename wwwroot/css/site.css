@@ -590,6 +590,10 @@ video {
   width: 24rem;
 }
 
+.min-w-\[900px\] {
+  min-width: 900px;
+}
+
 .border-separate {
   border-collapse: separate;
 }
