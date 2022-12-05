@@ -28,5 +28,10 @@ create a file based report of all orders.
 ## Tech Stack
 The main project is an ASP.NET Core M(V)C application. It uses NUGET packages to extend the projects functionality to
 connect with a TSQL database and log into files. Furthermore it has controller with endpoints for external services and fulfills the REST concept.
-All data will be stored in the relational Microsoft database and uses the Entity Framework Core with the code first approach to generate via the models the database.
+All data will be stored in a relational Microsoft database and uses the Entity Framework Core with the code first approach to generate the database scheme via the models. The view aspect is not really used here because the frontend exists as its own identity within the Kestrels publishing service in wwwroot directory.
+The UI uses only the Tailwindcss framework for CSS. Javascript ES6 is used to request the backend and to do the logic at UI.
+
+The used technologies are state of the art and comes with most flexibility for the most requirements. The REST concept comes with a possible generated documentation or API and the Entitiy Framework Core lets data between database and backend has been transfered easily. The complete tech stack can be used in a cloud or also be scaled for more performance or distributed load.
+
+For a complex UI should also be used an UI framework and a CI/CD process with tests and a deployment with tags and branches. But this would break the scope of this assessment ;).
 
