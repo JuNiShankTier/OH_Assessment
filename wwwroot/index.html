@@ -6,43 +6,154 @@
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
-    <h1>ONE HIRERING Assessment</h1>
-    <h3>Add</h3>
-    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-      <input type="text" id="add-name" placeholder="New Name" />
-      <input type="text" id="add-price" placeholder="New Price" />
-      <input type="text" id="add-description" placeholder="New Description" />
-      <input type="submit" value="Add" />
-    </form>
+    <div class="flex flex-col items-center mb-5">
+      <h1
+        class="text-gray-700 text-center text-4xl font-bold border-b border-slate-200 p-3"
+      >
+        ONE HIRERING Assessment UI
+      </h1>
+      <div class="inline-block text-null">
+        <button
+          onclick="openTab('ordersPage')"
+          class="hover:bg-violet-900 hover:text-white font-sans px-5 py-1 mx-0 text-base text-slate-500 bg-slate-100 inline-block"
+        >
+          Orders
+        </button>
+        <button
+          onclick="openTab('articlesPage')"
+          class="hover:bg-violet-900 hover:text-white font-sans px-5 py-1 mx-0 text-base text-slate-500 bg-slate-100"
+        >
+          Articles
+        </button>
+      </div>
+      <div id="ordersPage" class="inline-block tab">
+        <p>! Building Site !</p>
+      </div>
+      <div id="articlesPage" class="inline-block tab">
+        <div class="inline-block my-3">
+          <h3
+            class="font-bold text-lg text-gray-700 block border-b border-slate-200 px-2 my-2"
+          >
+            Add
+          </h3>
+          <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <input
+              type="text"
+              id="add-name"
+              placeholder="Name"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-52 h-11"
+            />
+            <input
+              type="text"
+              id="add-price"
+              placeholder="Price"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-24 h-11"
+            />
+            <select
+              id="add-rarity"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-52 h-11"
+            >
+              <option value="Common" selected>Common</option>
+              <option value="Uncommon">Uncommon</option>
+              <option value="Rare">Rare</option>
+              <option value="Very Rare">Very Rare</option>
+              <option value="Rarest">Rarest</option>
+            </select>
+            <input
+              type="text"
+              id="add-description"
+              placeholder="Description"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-96 h-11"
+            />
+            <button
+              type="submit"
+              class="rounded-md bg-violet-900 text-white font-sans px-5 py-1 mx-2"
+            >
+              Add
+            </button>
+          </form>
+        </div>
 
-    <div id="editForm">
-      <h3>Edit</h3>
-      <form action="javascript:void(0);" onsubmit="updateItem()">
-        <input type="hidden" id="edit-id" />
-        <input type="text" id="edit-name" />
-        <input type="text" id="edit-price" />
-        <input type="text" id="edit-description" />
-        <input type="submit" value="Save" />
-        <a onclick="closeInput()" aria-label="Close">&#10006;</a>
-      </form>
+        <div id="editForm" class="my-3">
+          <h3
+            class="font-bold text-lg text-gray-700 block border-b border-slate-200 px-2 my-2"
+          >
+            Edit
+          </h3>
+          <form action="javascript:void(0);" onsubmit="updateItem()">
+            <input type="hidden" id="edit-id" />
+            <input
+              type="text"
+              id="edit-name"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-52 h-11"
+            />
+            <input
+              type="text"
+              id="edit-price"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-24 h-11"
+            />
+            <select
+              id="edit-rarity"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-52 h-11"
+            >
+              <option value="Common">Common</option>
+              <option value="Uncommon">Uncommon</option>
+              <option value="Rare">Rare</option>
+              <option value="Very Rare">Very Rare</option>
+              <option value="Rarest">Rarest</option>
+            </select>
+            <input
+              type="text"
+              id="edit-description"
+              class="border border-slate-200 p-2 rounded-md focus:outline-none focus:border-purple-900 focus-visible:border-purple-900 focus:border-2 focus-visible:border-2 mr-2 inline-block w-96 h-11"
+            />
+            <button
+              type="submit"
+              class="rounded-md bg-violet-900 text-white font-sans px-5 py-1 mx-2"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              onclick="closeInput()"
+              class="rounded-md bg-violet-900 text-white font-sans px-5 py-1 mx-2"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+
+        <div class="flex justify-end my-2">
+          <span id="counter" class="font-bold text-gray-700"></span>
+          <button
+            class="rounded-md bg-violet-900 text-white font-sans px-5 py-1 ml-4"
+            onclick="exportTable()"
+          >
+            Export
+          </button>
+        </div>
+
+        <table
+          class="rounded-md border border-slate-200 border-separate border-spacing-0"
+        >
+          <tr class="bg-slate-100 h-12 text-gray-700 text-left">
+            <th class="pl-4">Id</th>
+            <th class="pl-4">Name</th>
+            <th class="pl-4">Price</th>
+            <th class="pl-4">Rarity</th>
+            <th class="pl-4">Description</th>
+            <th class="pl-4"></th>
+            <th class="pl-4"></th>
+          </tr>
+          <tbody id="articles" class="border-y"></tbody>
+        </table>
+      </div>
     </div>
-
-    <p id="counter"></p>
-
-    <table>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <tbody id="articles"></tbody>
-    </table>
 
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
+      document.getElementById("articlesPage").style.display = "none";
+      document.getElementById("editForm").style.display = "none";
       getItems();
     </script>
   </body>

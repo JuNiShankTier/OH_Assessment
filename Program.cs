@@ -1,6 +1,9 @@
 using OH_Assessment;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 using OH_Assessment.Data;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.Identity.Client;
 
 public class Program
 {
@@ -15,6 +18,12 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        /* For future use when using a react app for ui
+        builder.Services.AddSpaStaticFiles(configuration =>
+        {
+            configuration.RootPath = "client/build";
+        });
+        */
 
         builder.Logging.AddLog4Net("log4net.config");
 
@@ -44,6 +53,18 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllers();
+
+        /* For future use when using a react app for ui
+        app.UseSpa(spa =>
+        {
+            spa.Options.SourcePath = "client";
+
+            if (app.Environment.IsDevelopment())
+            {
+                spa.UseReactDevelopmentServer(npmScript: "start");
+            }
+        });
+        */
 
         app.Run();
     }

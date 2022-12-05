@@ -78,7 +78,6 @@ namespace OH_Assessment.Controllers
         [HttpPost]
         public async Task<ActionResult<Article>> PostArticle(Article article)
         {
-            article.ArticleId = _context.Articles.Count() + 1;
             _context.Articles.Add(article);
             try
             {
